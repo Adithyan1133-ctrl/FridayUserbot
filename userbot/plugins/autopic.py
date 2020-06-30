@@ -7,7 +7,7 @@ import asyncio
 import shutil
 from userbot.utils import admin_cmd
 
-FONT_FILE_TO_USE = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"
+FONT_FILE_TO_USE = "Fonts/digital.ttf"
 
 #@command(pattern="^.autopic", outgoing=True)
 @borg.on(admin_cmd(pattern=r"autopic"))
@@ -22,11 +22,11 @@ async def autopic(event):
     while True:
         shutil.copy(downloaded_file_name, photo)
         im = Image.open(photo)
-        current_time = datetime.now().strftime("   Time: %H:%M \n  @prgofficial \n Date: %d.%m.%y \n")
+        current_time = datetime.now().strftime("   Time: %H:%M \n  PROFESSOR \n Date: %d.%m.%y \n")
         img = Image.open(photo)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 30)
-        drawn_text.text((90, 300), current_time, font=fnt, fill=(255, 255, 255))
+        drawn_text.text((30, 500), current_time, font=fnt, fill=(255, 255, 255))
         img.save(photo)
         file = await bot.upload_file(photo)  # pylint:disable=E0602
         try:
@@ -35,6 +35,6 @@ async def autopic(event):
             ))
             os.remove(photo)
             counter -= 30
-            await asyncio.sleep(3600)
+            await asyncio.sleep(60)
         except:
             return
